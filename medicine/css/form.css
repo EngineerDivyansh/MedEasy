@@ -1,0 +1,33 @@
+*
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: auto;
+    overflow:visible;
+}
+
+.row
+{
+    width:35%;
+}
+
+label
+{
+    margin:10px;
+    align-items:center;
+    font-weight: 600;
+    font-size: large;
+}
+
+input
+{
+    padding: 4px;
+}
