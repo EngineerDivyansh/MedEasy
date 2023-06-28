@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express=require("express");
 const ejs=require("ejs");
 const bodyParser=require("body-parser");
@@ -54,7 +55,7 @@ app.use(session({
 
 
 //db connections
-mongoose.connect("mongodb+srv://godOfHack:godOfHack@cluster0.77gtofl.mongodb.net/test?retryWrites=true&w=majority").then(()=>{
+mongoose.connect(process.env.MONGODB_URI).then(()=>{
     console.log("Database connected")
 });
 
