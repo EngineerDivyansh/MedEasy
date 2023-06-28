@@ -21,11 +21,11 @@
     </div>
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container pt-3">
-            <a class="navbar-brand" href="/index">
             <span>
-              Medicine
+                <div style="color:white">
+                    <b><h2>MedEasy</h2></b>
+                </div>
             </span>
-            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -40,9 +40,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/about"> About </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/medicine"> Medicine </a>
-                        </li>
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="/buy"> Online Buy </a>
                         </li>
@@ -53,26 +51,52 @@
                             <a class="nav-link" href="/contact">Contact us</a>
                         </li>
                     </ul>
-                    <form class="form-inline ">
-                        <input type="search" placeholder="Search">
+                    <form class="form-inline " action="/search" method="post" >
+                        <input name="search" type="search" placeholder="Search" >
                         <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
                     </form>
-                    <div class="login_btn-contanier ml-0 ml-lg-3">
+                    
+                    <% if(log==false) { %>
+                            <div class="login_btn-contanier ml-0 ml-lg-3">
                         <a href="/login">
                             <img src="/static//static/images/user.png" alt="">
                             <span>
-                    Login
-                  </span>
+                          Login
+                         </span>
                         </a>
                     </div>
                     <div class="login_btn-contanier ml-0 ml-lg-2">
                         <a href="/signUp">
                             <img src="/static//static/images/user.png" alt="">
                             <span>
-                    SignUp
-                  </span>
+                           SignUp
+                         </span>
                         </a>
                     </div>
+                   <% } else { %>
+                    <div class="login_btn-contanier ml-0 ml-lg-2">
+                        <a>
+                            
+                            <span>
+                                <div style="color:white">
+                                    <%= log %>
+                                </div>
+                          
+                         </span>
+                        </a>
+                    </div>
+                    <div class="login_btn-contanier ml-0 ml-lg-2">
+                        <a href="/logout">
+                            <img src="/static//static/images/user.png" alt="">
+                            <span>
+                           LogOut
+                         </span>
+                        </a>
+                    </div>
+
+                    <% } %>
+
+
                 </div>
             </div>
 

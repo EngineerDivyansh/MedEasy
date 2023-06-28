@@ -12,43 +12,43 @@
             <div><h1>DELIVERY && PRICE DETAIL</h1></div>
             <div class="col-lg-12">
                 <label>Name : </label>
-                <input placeholder="Enter your name" type="text" name="name">
+                <input placeholder="Enter your name" type="text" name="name" required>
             </div>
             <br>
             <div class="col-lg-12">
                 <label>Mobile Number : </label>
-                <input placeholder="Mobile Number" type="text" name="phone">
+                <input placeholder="Mobile Number" type="text" name="phone" required>
             </div>
             <br>
             <div class="col-lg-12">
                 <label>Pincode : </label>
-                <input placeholder="Pincode" type="text" name="pincode">
+                <input placeholder="Pincode" type="text" name="pincode" required>
             </div>
             <br>
             <div class="col-lg-12">
                 <label>Address : </label>
-                <input placeholder="Address" type="text" name="address">
+                <input placeholder="Address" type="text" name="address" required>
             </div>
             <br>
             <div class="col-lg-12">
                 <label>Medicine : </label>
-                <input type="text" placeholder="" value="<%= data.medicineName %>" type="text" style="border: none;" name="medicineName">
+                <input type="text" placeholder="" value="<%= data.medicineName %>" type="text" style="border: none;" name="medicineName" required>
             </div>
             <br>
             <div class="col-lg-12">
                 <label>Number of Peice : </label>
-                <input placeholder="Number of Peice" type="number" id="ak" name="quantity">
+                <input placeholder="Number of Peice" type="number" id="ak" name="quantity" required>
                 <button style="color:red;width: 50px;border-radius: 5px;background-color:aqua ;"  id="btn">save</button>
             </div>
             <br>
             <div class="col-lg-12">
                 <label>Price per Piece : </label>
-                <input type="text" value="<%= data.price %>" id="price" style="border: none;" name="price_Per_piece">
+                <input type="text" value="<%= data.price %>" id="price" style="border: none;" name="price_Per_piece" required>
             </div>
             <br>
             <div class="col-lg-12">
                 <label>Total Price : </label>
-                <input  type="text" style="border: none;" id="op" name="total_Price">
+                <input  type="text" style="border: none;" id="op" name="total_Price" required>
             </div>
             <button type="submit"  class="btn btn-outline-dark">Submit</button>
     </div>

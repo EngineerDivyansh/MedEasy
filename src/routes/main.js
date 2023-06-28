@@ -11,6 +11,25 @@ const medicineDetail = require('../models/medicineDetail');
 const vitaminDetail = require('../models/vitaminDetail');
 const purchase=require('../models/purchase');
 const _=require("lodash")
+const session = require('express-session')
+const passport=require("passport")
+const passportLocalMongoose = require('passport-local-mongoose');
+
+routes.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+  }))
+   
+routes.use(passport.initialize())
+routes.use(passport.session())
+
+passport.use(user.createStrategy())
+
+passport.serializeUser(user.serializeUser());
+
+passport.deserializeUser(user.deserializeUser())
+
 
 // routes.get("/",async(req,res)=>{
 //     res.sendFile("C://Users/Divyansh/WebstormProjects/medicineWebsite/medicine/index.html");
@@ -102,32 +121,56 @@ routes.get("/vitamins/purchase/:name", async(req,res)=>{
 
 //sign up
 routes.post("/process-signUp",async (req,res)=>{
-    console.log(req.body);
-    //save the data to db
-    try{
-        const data=await user.create(req.body);
-        console.log(data);
-        res.redirect("/");
-    }catch (e){
-        console.log(e);
-        res.redirect("/");
-    }
-})
+
+    user.register({email:req.body.email},req.body.password,(err,user)=>{
+        if(err){
+            console.log(err);
+            res.redirect("/")
+        }else{
+            passport.authenticate("local")(req,res,()=>{
+                res.redirect("/");
+            })
+        }
+    })
+    // console.log(req.body);
+    // //save the data to db
+    // try{
+    //     const data=await user.create(req.body);
+    //     console.log(data);
+    //     res.redirect("/");
+    // }catch (e){
+    //     console.log(e);
+    //     res.redirect("/");
+    // }
+}) 
 
 //log-in
 routes.post("/process-login",async (req,res)=>{
-    try{
-        const email=req.body.email;
-        const password=req.body.password;
-        const usermail=await user.findOne({email:email});
-        if(usermail.password==password){
-            res.status(201).render("index");
-        }else{
-            res.send("invalid login Details");
-        }
-    }catch (e){
-         res.status(400).send("invalid login Details");
-    }
+    const User=new user({email:req.body.email,
+        password:req.body.password});
+    
+        req.login(User,(err)=>{
+            if(err){
+                console.log(err);
+            }else{
+                passport.authenticate("local")(req,res,()=>{
+                    res.redirect("/");
+                    console.log("success")
+                })
+            }
+        })
+    // try{
+    //     const email=req.body.email;
+    //     const password=req.body.password;
+    //     const usermail=await user.findOne({email:email});
+    //     if(usermail.password==password){
+    //         res.status(201).render("index");
+    //     }else{
+    //         res.send("invalid login Details");
+    //     }
+    // }catch (e){
+    //      res.status(400).send("invalid login Details");
+    // }
 })
 
 //callBackDetail
